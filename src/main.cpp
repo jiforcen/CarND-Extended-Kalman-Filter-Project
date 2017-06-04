@@ -28,8 +28,8 @@ std::string hasData(std::string s) {
 
 int main()
 {
-  uWS::Hub h;
 
+  uWS::Hub h;
   // Create a Kalman Filter instance
   FusionEKF fusionEKF;
 
@@ -48,7 +48,7 @@ int main()
 
       auto s = hasData(std::string(data));
       if (s != "") {
-      	
+
         auto j = json::parse(s);
 
         std::string event = j[0].get<std::string>();
@@ -91,6 +91,7 @@ int main()
           		meas_package.timestamp_ = timestamp;
           }
           float x_gt;
+
     	  float y_gt;
     	  float vx_gt;
     	  float vy_gt;
@@ -121,7 +122,7 @@ int main()
     	  estimate(1) = p_y;
     	  estimate(2) = v1;
     	  estimate(3) = v2;
-    	  
+
     	  estimations.push_back(estimate);
 
     	  VectorXd RMSE = tools.CalculateRMSE(estimations, ground_truth);
